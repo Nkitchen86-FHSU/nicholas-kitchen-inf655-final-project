@@ -15,6 +15,7 @@ function Cart() {
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
+    // Process the checkout, then navigate to the confirmation page
     function handleCheckout() {
         if(cart.length === 0){
             navigate("/");
@@ -30,6 +31,7 @@ function Cart() {
         navigate("/success");
     }
 
+    // Navigate to the login page if there is no user
     useEffect(() => {
         if (!user) {
             navigate("/login");
@@ -40,6 +42,7 @@ function Cart() {
         <Layout>
             <div className="container mx-auto px-4 max-w-7xl px-2 lg:px-0">
                 <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
+                    {/* Top Heading */}
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                         Shopping Cart
                     </h1>
@@ -48,6 +51,7 @@ function Cart() {
                             <h2>
                                 Items in your shopping cart
                             </h2>
+                            {/* Map out each object in the shopping cart */}
                             <ul className="divide-y divide-gray-200">
                                 {cart.map((item, index) => (
                                     <div key={index} className="">
@@ -62,6 +66,7 @@ function Cart() {
                                                             <a href="#" className="font-semibold text-black">{item.title}</a>
                                                         </h3>
                                                     </div>
+                                                    {/* Allow ticket quantity to be increased or decreased */}
                                                     <div className="flex items-center gap-2 mt-2">
                                                         <button onClick={(e) => {e.preventDefault(); decreaseQuantity(item)}} className="px-2 py-1 text-sm bg-gray-200 rounded">−</button>
                                                         <span className="text-sm font-medium">{item.quantity}</span>
@@ -75,6 +80,7 @@ function Cart() {
                                                 </div>
                                             </div>
                                         </li>
+                                        {/* Button to remove item from cart */}
                                         <div className="mb-2 flex">
                                             <div className="ml-6 flex text-sm">
                                                 <button type="button" className="flex items-center space-x-1 px-2 py-1 pl-0" onClick={() => removeFromCart(item)}>
@@ -90,6 +96,7 @@ function Cart() {
                                 <h2 id="summary-heading" className="border-b border-gray-200 px-4 py-3 text-lg font-medium text-gray-900 sm:p-4">
                                     Price Details
                                 </h2>
+                                {/* Show total tickets and price, then allow user to checkout */}
                                 <div>
                                     <dl className="space-y-1 px-2 py-4">
                                         <div className="flex items-center justify-between">

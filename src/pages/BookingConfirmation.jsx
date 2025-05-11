@@ -13,6 +13,7 @@ function BookingConfirmation() {
         <Layout>
             <div className="container mx-auto px-4 max-w-7xl px-2 lg:px-0">
                 <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
+                    {/* Top Heading */}
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                         Thank You For Purchasing Tickets!
                     </h1>
@@ -21,6 +22,7 @@ function BookingConfirmation() {
                             <h2 className="text-lg">
                                 Ticket Receipt
                             </h2>
+                            {/* Map out each ticket that was purchased */}
                             <ul className="divide-y divide-gray-200">
                                 {cart.map((item, index) => (
                                     <div key={index} className="">
@@ -46,6 +48,7 @@ function BookingConfirmation() {
                                     </div>
                                 ))}
                             </ul>
+                            {/* Display the total price and tickets */}
                             <section aria-labelledby="summary-heading" className="mt-16 rounded-md bg-white lg:col-span-4 lg:mt-0 lg:p-0">
                                 <h2 id="summary-heading" className="border-b border-gray-200 px-4 py-3 text-lg font-medium text-gray-900 sm:p-4">
                                     Grand Total

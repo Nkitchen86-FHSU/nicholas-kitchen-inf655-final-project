@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../firebase';
+import { UserAuth } from '../context/AuthContext';
 
 
 function SignUp() {
@@ -12,6 +11,8 @@ function SignUp() {
     email:"",
     password:""
   });
+  const { createUser, updateProfile } = UserAuth
+
   const userSignUpFunction = async() => {
     // Validation
     if(userSignUp.username === "" || userSignUp.email === "" || userSignUp.password === "") {
@@ -21,8 +22,7 @@ function SignUp() {
 
     try {
       // Create Firebase user
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
+      const userCredential = await createUser(
         userSignUp.email,
         userSignUp.password
       );
@@ -32,7 +32,7 @@ function SignUp() {
         displayName: userSignUp.username
       });
 
-      // On success
+      // Navigate to login on success
       toast.success("SignUp Successfully!");
       navigate("/login");
     } catch(error) {
@@ -52,6 +52,7 @@ function SignUp() {
               SignUp
             </h2>
           </div>
+          {/* Enter username, email, and password */}
           <div className="mb-3">
             <input 
               type="text" 
@@ -94,6 +95,7 @@ function SignUp() {
                 SignUp
               </button>
           </div>
+          {/* Give button to login if the user already has an account */}
           <div>
             <h2 className="text-black">
               Have an Account?

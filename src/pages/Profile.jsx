@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UserAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ function Profile() {
     const { user, getUserOrders, logout } = UserAuth();
     const [orders, setOrders] = useState([]);
 
+    // Get the user's previous orders
     useEffect(() => {
         const fetchOrders = async () => {
             const data = await getUserOrders();
@@ -19,16 +20,20 @@ function Profile() {
     return (
         <div>
             <Layout>
+                {/* Top Heading */}
                 <div className="bg-teal-400 p-5">
                     <h1 className="text-center text-2xl font-semibold">Profile</h1>
                 </div>
                 <section className="flex justify-center items-start min-h-screen pt-5 bg-custom-dark-navy-blue">
+                    {/* Display user information */}
                    <div className="bg-orange-100 shadow-md p-6 rounded-xl w-1/4 min-w-96">
                         <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Username: {user.displayName}</h1>
                         <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Email: {user.email}</h1>
+                        {/* Logout Button */}
                         <button type="button" className="flex items-center space-x-1 px-2 py-1 pl-0" onClick={() => {logout(); navigate("/")}}>
                             <span className="text-s font-bold text-red-500 hover:text-red-700">Logout</span>
                         </button>
+                        {/* Display order history if the user has made an order. If not, then display 'no orders found.' */}
                         <h1 className="title-font text-xl font-medium text-gray-900 mt-5 mb-3">Order History</h1>
                         {orders.length > 0 ? 
                             (
@@ -44,11 +49,8 @@ function Profile() {
                             )
                         }
                     </div> 
-                    {getUserOrders}
                 </section>
-                
             </Layout>
-            
         </div>
     )
 }

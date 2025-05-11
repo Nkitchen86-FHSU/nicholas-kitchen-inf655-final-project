@@ -1,4 +1,3 @@
-import React from 'react';
 import HomepageEvents from '../components/HomepageEvents';
 import Layout from '../components/Layout';
 

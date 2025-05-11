@@ -12,9 +12,11 @@ function EventDetails() {
         <section className="flex justify-center items-start min-h-screen pt-5 bg-custom-dark-navy-blue">
             <div className="max-w-6xl px-4 mx-auto">
                 <div className="flex flex-wrap mb-24 -mx-4">
+                    {/* Display the thumbnail on the left side */}
                     <div className="w-full px-4 mb-8 md:w-1/2 md:mb-0">
                         <img className="w-full lg:h-[39em] rounded-lg object-cover" src={event.thumbnail} alt="img" />
                     </div>
+                    {/* Display the rest of the event's description on the right side */}
                     <div className="w-full px-4 md:w-1/2">
                         <div className="bg-orange-100 shadow-md p-6 rounded-xl">
                             <div className="mb-6 ml-20">
@@ -29,6 +31,7 @@ function EventDetails() {
                                 <h2>Description: </h2>
                                 <p>{event.description}</p>
                             </div>
+                            {/* Button to let user add to cart */}
                             <div className="mb-6 flex justify-center">
                                 <button className="max-w-sm bg-amber-500 hover:bg-yellow-600 w-full text-black py-[4px] rounded-lg font-bold" onClick={() => addToCart(event)}>Add to Cart</button>
                             </div>

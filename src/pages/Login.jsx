@@ -1,7 +1,5 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
 import { UserAuth } from '../context/AuthContext';
 
 function Login() {
@@ -10,13 +8,14 @@ function Login() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    const { user } = UserAuth();
+    const { user, signIn } = UserAuth();
 
+    // Attempt to login with the set username and password
     const handleSubmit = async(e) => {
         e.preventDefault();
         setError(null);
         try{
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signIn(email, password);
             const user = userCredential.user;
             localStorage.setItem("authToken", await user.getIdToken());
             navigate("/");
@@ -25,7 +24,7 @@ function Login() {
         }
     }
 
-    /* If user is already authenticated, then go to the profile page */
+    // If user is already authenticated, then go to the profile page
     useEffect(() => {
         if (user) {
           navigate("/profile");
@@ -73,6 +72,7 @@ function Login() {
                             Login
                         </button>
                     </div>
+                    {/* Give option to go to signup if user doesn't have an account */}
                     <div>
                         <h2 className="text-black">
                             Don't have an Account?

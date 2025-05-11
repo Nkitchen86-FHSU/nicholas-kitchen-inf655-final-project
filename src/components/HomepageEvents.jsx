@@ -76,6 +76,7 @@ function HomepageEvents() {
 
     return (
         <div>
+            {/* Top Heading */}
             <div className="bg-teal-400 p-5">
                 <h1 className="text-center text-2xl font-semibold">Events</h1>
             </div>

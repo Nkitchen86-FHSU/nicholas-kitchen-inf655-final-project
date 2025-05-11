@@ -4,6 +4,7 @@ export const CartContext = React.createContext();
 export const CartProvider = ({children}) => {
     const [cart, setCart] = React.useState([]);
 
+    // Add to the cart
     const addToCart = (item) => {
         const existingItem = cart.find((cartItem) => cartItem.id === item.id);
         if(existingItem) {
@@ -20,6 +21,7 @@ export const CartProvider = ({children}) => {
         console.log(cart);
     };
 
+    // Decrease the quantity from the cart
     const decreaseQuantity = (item) => {
         const existingItem = cart.find((cartItem) => cartItem.id === item.id);
         if (existingItem.quantity === 1) {
@@ -35,6 +37,7 @@ export const CartProvider = ({children}) => {
         }
     };
 
+    // Remove all tickets of that type from the cart
     const removeFromCart = (item) => {
         setCart(cart.filter(cartItem => cartItem.id !== item.id));
         console.log(cart);

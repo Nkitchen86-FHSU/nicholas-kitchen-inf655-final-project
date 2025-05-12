@@ -11,7 +11,7 @@ function SignUp() {
     email:"",
     password:""
   });
-  const { createUser, updateProfile } = UserAuth
+  const { createUser, updateUser } = UserAuth();
 
   const userSignUpFunction = async() => {
     // Validation
@@ -22,15 +22,16 @@ function SignUp() {
 
     try {
       // Create Firebase user
-      const userCredential = await createUser(
+      await createUser(
         userSignUp.email,
         userSignUp.password
       );
 
       // Set display name in Firebase Auth profile
-      await updateProfile(userCredential.user, {
-        displayName: userSignUp.username
-      });
+      await updateUser(
+        userSignUp.username, 
+        userSignUp.email
+      );
 
       // Navigate to login on success
       toast.success("SignUp Successfully!");

@@ -26,7 +26,6 @@ export const AuthContextProvider = ({ children }) => {
       displayName: name
     }).then(() => {
       console.log(auth.currentUser.displayName, auth.currentUser.email);
-      alert("Your Profile is updated");
     });
   };
 
